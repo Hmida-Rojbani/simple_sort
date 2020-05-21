@@ -1,0 +1,26 @@
+PROCEDURE swap(VAR xp,VAR yp : INTEGER)
+VAR
+    tmp : INTEGER;
+BEGIN
+    tmp : = xp;
+    xp := yp;
+    yp := tmp;
+END
+
+PROCEDURE selection_sort(VAR arr : ARRAY_OF INTEGER)
+VAR
+    i,j, min_idx,n: INTEGER;
+BEGIN
+    n := arr.length;
+    // One by one move boundary of unsorted subarray 
+    FOR i FROM 0 TO n-2 DO
+        min_idx := i;
+        FOR j FROM i+1 TO n-1  DO
+            IF (arr[j] < arr[min_idx]) THEN
+                min_idx := j;
+            END_IF
+        END_FOR
+        // Swap the found minimum element with the first element
+        swap(arr[min_idx],arr[i]);
+    END_FOR
+END
